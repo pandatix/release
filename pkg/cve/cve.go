@@ -23,6 +23,7 @@ import (
 	"strings"
 
 	gocvss30 "github.com/pandatix/go-cvss/30"
+	gocvss31 "github.com/pandatix/go-cvss/31"
 )
 
 // CVE Information of a linked CVE vulnerability
@@ -99,7 +100,7 @@ func (cve *CVE) Validate() (err error) {
 		_, err = gocvss30.ParseVector(cve.CVSSVector)
 		ver = "3.0"
 	case strings.HasPrefix(cve.CVSSVector, "CVSS:3.1"):
-		_, err = gocvss30.ParseVector(cve.CVSSVector)
+		_, err = gocvss31.ParseVector(cve.CVSSVector)
 		ver = "3.1"
 	default:
 		return errors.New("invalid CVSS prefix")
